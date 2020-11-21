@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  把Chinese的控制权给spring容器，通过setter方法注入  -->
+    <bean id="chinese" class="com.cheng.demo.ioc.Chinese">
+        <!--  注意：如果要依赖注入，必须在Chinese方法中有setAxe的方法  -->
+        <property name="axe" ref="steelAxe"/>
+    </bean>
+
+    <!--  通过构造方法注入  -->
+    <bean id="american" class="com.cheng.demo.ioc.American">
+        <constructor-arg ref="stoneAxe"/>
+    </bean>
+
+    <!--  将StoneAxe实例的控制权给到spring容器  -->
+    <bean id="stoneAxe" class="com.cheng.demo.ioc.StoneAxe"/>
+
+    <!--  同理，SteelAxe控制权给spring容器  -->
+    <bean id="steelAxe" class="com.cheng.demo.ioc.SteelAxe"/>
+
+</beans>

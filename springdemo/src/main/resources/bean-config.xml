@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="motorCycle" class="com.cheng.demo.configdemo.MotorCycle">
+        <property name="name" value="黄龙600"/>
+        <property name="weight" value="206"/>
+        <property name="brand" ref="brand"/>
+        <property name="maps">
+            <map>
+                <entry key="本田" value="cbr"/>
+                <entry key="YAMAHA" value="R6"/>
+            </map>
+        </property>
+        <property name="sets">
+            <set>
+                <value>铃木</value>
+                <value>川崎</value>
+            </set>
+        </property>
+        <property name="lists">
+            <list>
+                <value>SUZUKI</value>
+                <value>KAWASAKI</value>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="aaa">111</prop>
+                <prop key="bbb">222</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="brand" class="com.cheng.demo.configdemo.Brand">
+        <property name="name" value="贝纳利"/>
+    </bean>
+    
+</beans>

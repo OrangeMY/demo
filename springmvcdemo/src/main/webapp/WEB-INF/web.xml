@@ -1,0 +1,25 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>springMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath*:springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>springMVC</servlet-name>
+    <!--  这个地方只能配置成/，如果配置成/*，那么说明任何请求都会映射到DispatcherServlet。那么到了最后View返回给用户的内容，
+      最终又回被拦截，这样永远都会报错-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>

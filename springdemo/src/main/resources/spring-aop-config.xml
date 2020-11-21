@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!--  第一种方式实现AOP，通过注解的方式  -->
+    <!--  开启注解扫描  -->
+    <context:component-scan base-package="com.cheng.demo"/>
+    <!--  开启AOP注解  -->
+    <aop:aspectj-autoproxy/>
+
+    <!--  第二种方式实现AOP  -->
+    <!--  下面这一块通过配置文件的方式实现AOP  -->
+    <bean id="motorCycleService" class="com.cheng.demo.aop.MotorCycleServiceImpl"/>
+
+    <bean id="motorCycleAspects" class="com.cheng.demo.aop.MotorCycleAspects"/>
+
+    <aop:config>
+        <aop:pointcut id="pointCut3" expression="execution(public * com.cheng.demo.aop.MotorCycleServiceImpl.ride())"/>
+        <aop:aspect ref="motorCycleAspects">
+            <aop:around method="aroundAdvice" pointcut-ref="pointCut3"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
