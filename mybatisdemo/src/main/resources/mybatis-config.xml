@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties>
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://172.30.1.172/ib_vas_charge?characterEncoding=utf-8&amp;allowMultiQueries=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </properties>
+
+    <!--  ??????????default?????????  -->
+    <environments default="dev">
+        <!--  id?????  -->
+        <environment id="dev">
+            <!--  ??????JDBC????????  -->
+            <transactionManager type="JDBC"/>
+            <!--  ???????????  -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://172.30.1.172/ib_vas_charge"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <!--  ??mapper????  -->
+    <mappers>
+        <mapper resource="mappers/TestUserMapper.xml"/>
+    </mappers>
+
+</configuration>
