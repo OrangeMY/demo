@@ -1,4 +1,4 @@
-package com.cheng.entity;
+package com.cheng.demo.entity;
 
 import java.util.Date;
 

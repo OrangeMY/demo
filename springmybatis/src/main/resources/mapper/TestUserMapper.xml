@@ -3,31 +3,40 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="TestUserMapper">
+<mapper namespace="com.cheng.demo.mapper.TestUserMapper">
 
-    <!--  配置二级缓存  -->
-<!--  <cache type="PerpetualCache"/>  -->
-
-    <resultMap id="resultMap" type="com.cheng.entity.TestUser">
+    <resultMap id="resultMap" type="com.cheng.demo.entity.TestUser">
         <id property="id" column="id" javaType="java.lang.Long"/>
         <result property="name" column="name" javaType="java.lang.String"/>
         <result property="sex" column="sex" javaType="java.lang.Integer"/>
         <result property="remark" column="remark" javaType="java.lang.String"/>
         <result property="createTime" column="create_time" javaType="java.util.Date"/>
         <result property="updateTime" column="update_time" javaType="java.util.Date"/>
+        <result property="test" column="test" javaType="java.lang.String"/>
+        <result property="BelongOprName" column="belong_opr_name" javaType="java.lang.String"/>
     </resultMap>
 
     <select id="selectAll" resultMap="resultMap">
         select * from tbl_test_user
     </select>
 
-    <select id="selectOne" parameterType="java.lang.Long" resultMap="resultMap">
+    <select id="getOneUser" parameterType="java.lang.Long" resultMap="resultMap">
         select * from tbl_test_user where id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.cheng.entity.TestUser">
+    <update id="update" parameterType="com.cheng.demo.entity.TestUser">
+        update tbl_test_user
+        set name=#{name}, remark=#{remark}, sex=#{sex}, update_time=#{updateTime}
+        where id=#{id}
+    </update>
+
+    <insert id="insert" parameterType="com.cheng.demo.entity.TestUser">
         insert into tbl_test_user(name, sex, remark, create_time, belong_opr_name)
         values(#{name}, #{sex}, #{remark}, #{createTime}, #{belongOprName})
     </insert>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from tbl_test_user where id = #{id}
+    </delete>
 
 </mapper>

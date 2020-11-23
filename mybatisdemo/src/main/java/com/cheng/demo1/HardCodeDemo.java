@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 public class HardCodeDemo {
@@ -19,11 +20,16 @@ public class HardCodeDemo {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
         // 获取sqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        TestUser testUser = new TestUser();
+        // selectAll
+        System.out.println("==== 下面是selectAll方法的结果： ====");
         List<TestUser> TestUserList = sqlSession.selectList("TestUserMapper.selectAll");
         for (TestUser user : TestUserList) {
             System.out.println(user);
         }
+        // selectOne
+        System.out.println("==== 下面是selectOne方法的结果： ====");
+        TestUser user1 = sqlSession.selectOne("TestUserMapper.selectOne", 100000002L);
+        System.out.println(user1);
         sqlSession.close();
     }
 }
