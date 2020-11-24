@@ -39,4 +39,12 @@
         delete from tbl_test_user where id = #{id}
     </delete>
 
+    <select id="selectByPage" parameterType="java.util.Map" resultMap="resultMap">
+        select * from tbl_test_user limit #{page}, #{size}
+    </select>
+
+    <select id="count">
+        select count(1) from tbl_test_user
+    </select>
+
 </mapper>

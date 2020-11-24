@@ -4,6 +4,7 @@ import com.cheng.demo.entity.TestUser;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 public class TestUserMapperImpl implements TestUserMapper {
 
@@ -41,5 +42,17 @@ public class TestUserMapperImpl implements TestUserMapper {
     public int delete(Long id) {
         TestUserMapper testUserMapper = sqlSession.getMapper(TestUserMapper.class);
         return testUserMapper.delete(id);
+    }
+
+    @Override
+    public List<TestUser> selectByPage(Map<String, Object> params) {
+        TestUserMapper testUserMapper = sqlSession.getMapper(TestUserMapper.class);
+        return testUserMapper.selectByPage(params);
+    }
+
+    @Override
+    public Integer count() {
+        TestUserMapper testUserMapper = sqlSession.getMapper(TestUserMapper.class);
+        return testUserMapper.count();
     }
 }
