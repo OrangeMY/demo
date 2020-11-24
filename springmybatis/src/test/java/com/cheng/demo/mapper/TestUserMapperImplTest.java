@@ -1,6 +1,8 @@
 package com.cheng.demo.mapper;
 
 import com.cheng.demo.entity.TestUser;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -17,10 +19,16 @@ public class TestUserMapperImplTest {
 
     @Test
     public void selectAll() {
+        PageHelper.startPage(2, 5);
         List<TestUser> testUserList = testUserMapper.selectAll();
         for (TestUser user : testUserList) {
             System.out.println(user);
         }
+        // 后面可以通过PageInfo获取到分页信息
+        PageInfo<TestUser> pageInfo = new PageInfo(testUserList);
+        long total = pageInfo.getTotal();
+        long pages = pageInfo.getPages();
+        System.out.println("总共有：" + total + "条数据" + "====" + "总共有" + pages + "页");
     }
 
     @Test
@@ -75,5 +83,6 @@ public class TestUserMapperImplTest {
 
     @Test
     public void count() {
+        System.out.println(testUserMapper.count());
     }
 }

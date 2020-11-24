@@ -43,7 +43,7 @@
         select * from tbl_test_user limit #{page}, #{size}
     </select>
 
-    <select id="count">
+    <select id="count" resultType="java.lang.Integer">
         select count(1) from tbl_test_user
     </select>
 
